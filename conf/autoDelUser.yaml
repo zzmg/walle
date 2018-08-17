@@ -6,6 +6,6 @@ micro:
             - "10.1.0.210:2379"
             - "10.1.0.222:2379"
 redis:
-    addr: "localhost:6379"
-    password: ""
+    addr: "10.0.2.239:6379"
+    password: "crs-pv5btjqq:253Huaerjie!"
     db: 0
