@@ -3,7 +3,7 @@ package client
 import (
 	"github.com/go-redis/redis"
 	"github.com/jinzhu/configor"
-	"autoDelUser/common"
+	"cradle/autoDelUser/common"
 )
 var Config common.Config
 
