@@ -2,7 +2,7 @@ package client
 
 import (
 	"github.com/parnurzeal/gorequest"
-	"cradle/autoDelUser/common"
+	"autoDelUser/common"
 	"encoding/json"
 	"time"
 	"strconv"

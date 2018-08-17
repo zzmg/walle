@@ -1,8 +1,8 @@
 package main
 
 import (
-	"cradle/autoDelUser/client"
-	"cradle/autoDelUser/common"
+	"autoDelUser/client"
+	"autoDelUser/common"
 	"strings"
 	"fmt"
 	"gitlab.wallstcn.com/wscnbackend/ivankaprotocol/user"
