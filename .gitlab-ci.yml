@@ -32,7 +32,6 @@ test:1.9:
     - make deps
     - export PATH=/tmp/govendor/bin:$PATH
     - export GOPATH=/tmp/govendor/:$GOPATH
-    - sleep 1000
     - make test
 build:
   image: golang:1.9
