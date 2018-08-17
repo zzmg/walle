@@ -36,6 +36,7 @@ deps:
 	cp -r /tmp/govendor_temp/vendor/* /tmp/govendor/src
 	mkdir -p /tmp/govendor/bin
 	mkdir -p /go/src/cradle/$(CI_PROJECT_NAME)/
+	mkdir -p /builds/operation/cradle/
 	cp -R "/builds/operation/cradle/$(CI_PROJECT_NAME)/" "/go/src/cradle/$(SERVICE_NAME)/"
 test:
 	go test
