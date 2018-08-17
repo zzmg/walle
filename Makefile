@@ -36,6 +36,6 @@ deps:
 	cp -r /tmp/govendor_temp/vendor/* /tmp/govendor/src
 	mkdir -p /tmp/govendor/bin
 	mkdir -p /go/src/gitlab.wallstcn.com/$(CI_PROJECT_NAME)/
-	cp -R "/builds/$(CI_PROJECT_PATH)/" "/go/src/gitlab.wallstcn.com/$(SERVICE_NAME)/"
+	cp -R "/builds/$(CI_PROJECT_PATH)/" "/go/src/cradle/$(SERVICE_NAME)/"
 test:
 	go test
