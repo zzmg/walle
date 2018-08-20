@@ -64,20 +64,6 @@ build:
   only:
     - sit
     - master
-release:prod:
-  stage: release
-  script:
-    - pwd
-    - ls binaries
-    - cp binaries/server .
-    - REVISION=`git rev-parse --short=8 HEAD || echo unknown`
-    - docker login --username=3518936217 ccr.ccs.tencentyun.com -p "$CI_DOCKER_REGISTRY_TOKEN"
-    - docker build --tag="$CONTAINER_RELEASE_IMAGE" .
-    - docker push $CONTAINER_RELEASE_IMAGE
-    - docker build --tag="$IMAGE_NAME:$REVISION" .
-    - docker push "$IMAGE_NAME:$REVISION"
-  only:
-    - master
     
 release:sit:
   stage: release
@@ -87,20 +73,10 @@ release:sit:
     - cp binaries/server .
     - REVISION=`git rev-parse --short HEAD || echo unknown`
     - docker login --username=3518936217 ccr.ccs.tencentyun.com -p "$CI_DOCKER_REGISTRY_TOKEN"
-    - docker build --tag="$IMAGE_NAME:sit" .
-    - docker push "$IMAGE_NAME:sit"
-  only:
-    - sit
-release:stage:
-  stage: release
-  script:
-    - pwd
-    - ls binaries
-    - cp binaries/server .
-    - REVISION=`git rev-parse --short HEAD || echo unknown`
-    - docker login --username=3518936217 ccr.ccs.tencentyun.com -p "$CI_DOCKER_REGISTRY_TOKEN"
-    - docker build --tag="$IMAGE_NAME:stage" .
-    - docker push "$IMAGE_NAME:stage"
+    - docker build --tag="$IMAGE_NAME:$REVISION" .
+    - docker push "$IMAGE_NAME:$REVISION"
+    - docker build --tag="$IMAGE_NAME:latest" .
+    - docker push "$IMAGE_NAME:latest"
   only:
     - master
 deployment:sit:
@@ -123,25 +99,4 @@ deployment:sit:
   script:
     - ssh ubuntu@115.159.224.129 "kubectl scale --namespace=$NAMESPACE --replicas=0 deployment/$SERVICE_NAME && kubectl scale --namespace=$NAMESPACE --replicas=1 deployment/$SERVICE_NAME"
   only:
-    - sit
-deployment:stage:
-  stage: deployment
-  image: kroniak/ssh-client
-  before_script:
-    # Install ssh-agent if not already installed, it is required by Docker.
-    # (change apt-get to yum if you use a CentOS-based image)
-    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
-    # Run ssh-agent (inside the build environment)
-    - eval $(ssh-agent -s)
-    # Add the SSH key stored in SSH_PRIVATE_KEY variable to the agent store
-    - ssh-add <(echo "$IVANKA_PUBLISH_SSH_PRIVATE_KEY")
-    # For Docker builds disable host key checking. Be aware that by adding that
-    # you are suspectible to man-in-the-middle attacks.
-    # WARNING: Use this only with the Docker executor, if you use it with shell
-    # you will overwrite your user's SSH config.
-    - mkdir -p ~/.ssh
-    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
-  only:
     - master
-  script:
-    - ssh ubuntu@115.159.108.254 "kubessh grafana restart $SERVICE_NAME"
