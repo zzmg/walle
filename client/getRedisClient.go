@@ -3,12 +3,12 @@ package client
 import (
 	"github.com/go-redis/redis"
 	"github.com/jinzhu/configor"
-	"cradle/autoDelUser/common"
+	"cradle/walle/common"
 )
 var Config common.Config
 
 func LoadConfig() {
-	configor.Load(&Config, "conf/autoDelUser.yaml")
+	configor.Load(&Config, "conf/walle.yaml")
 }
 
 func GetRedisClient() *redis.Client{

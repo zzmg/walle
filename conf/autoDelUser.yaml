@@ -1,5 +1,5 @@
 micro:
-    svc_name: "gitlab.wallstcn.com.autoDelUser"
+    svc_name: "gitlab.wallstcn.com.walle"
     svc_addr: ":10087"
     etcd_addrs:
             - "10.1.0.2:2379"

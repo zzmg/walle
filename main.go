@@ -1,8 +1,8 @@
 package main
 
 import (
-	"cradle/autoDelUser/client"
-	"cradle/autoDelUser/common"
+	"cradle/walle/client"
+	"cradle/walle/common"
 	"strings"
 	"fmt"
 	"gitlab.wallstcn.com/wscnbackend/ivankaprotocol/user"
@@ -25,7 +25,7 @@ var Push xinge.PushApiClient
 
 func StartClient() {
 	svc := service.NewService(
-		ivankastd.ConfigService{SvcName: "gitlab.wallstcn.com.autoDelUser", SvcAddr: ":10087", EtcdAddrs: []string{"10.1.0.2:2379", "10.1.0.210:2379", "10.1.0.222:2379"}},
+		ivankastd.ConfigService{SvcName: "gitlab.wallstcn.com.walle", SvcAddr: ":10087", EtcdAddrs: []string{"10.1.0.2:2379", "10.1.0.210:2379", "10.1.0.222:2379"}},
 		micro.RegisterTTL(time.Second*30),
 		micro.RegisterInterval(time.Second*10),
 	)
@@ -77,7 +77,7 @@ func main() {
 	}
 	emailParams.Titile = "Users who need to be deleted"
 	emailParams.Receivers = emailList
-	emailParams.Project = "autoDelUser"
+	emailParams.Project = "walle"
 
 	Push.SendEmail(context.Background(),&emailParams)
 	//fmt.Println(emailParams.Content)

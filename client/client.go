@@ -2,7 +2,7 @@ package client
 
 import (
 	"github.com/parnurzeal/gorequest"
-	"cradle/autoDelUser/common"
+	"cradle/walle/common"
 	"encoding/json"
 	"time"
 	"strconv"
@@ -28,7 +28,7 @@ var QyEmailMap = make(map[string]common.QyUserItem)
 //var Config common.Config
 
 //func LoadConfig() {
-//	configor.Load(&Config, "conf/autoDelUser.yaml")
+//	configor.Load(&Config, "conf/walle.yaml")
 //}
 
 /* get token and Cache to redis*/
