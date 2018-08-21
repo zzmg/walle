@@ -29,6 +29,7 @@ func StartClient() {
 		micro.RegisterTTL(time.Second*30),
 		micro.RegisterInterval(time.Second*10),
 	)
+	svc.Init()
 	//UIC = pbuser.NewInternalClient(std.UserSvcName, svc.Client())
 	//UINFO = pbuser.NewUserClient(std.UserSvcName, svc.Client())
 	//ShortUriClient = delegate.NewShortUriClient(std.DelegateSvcName, svc.Client())
