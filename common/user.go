@@ -1,10 +1,10 @@
 package common
 
-
 type Config struct {
 	Redis Redis `yaml:"redis"`
 	//Micro Micro `yaml:"micro"`
 }
+
 //type Micro struct {
 //	SvcName string `yaml:"svc_name""`
 //	SvcAddr string `yaml:"svc_addr""`
@@ -39,7 +39,7 @@ type QyUserItem struct {
 	Status     int     `json:"status"`
 	Enable     int     `json:"enable"`
 	IsLeader   int     `json:"is_leader"`
-	Extattr struct {
+	Extattr    struct {
 		attrs []string
 	} `json:"extattr"`
 	HideMobile  int    `json:"hide_mobile"`

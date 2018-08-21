@@ -1,13 +1,13 @@
 package client
 
 import (
-	"github.com/parnurzeal/gorequest"
 	"cradle/walle/common"
 	"encoding/json"
-	"strconv"
-	"time"
 	"errors"
 	"fmt"
+	"github.com/parnurzeal/gorequest"
+	"strconv"
+	"time"
 )
 
 const (
@@ -25,16 +25,16 @@ var GitlabEmailMap = make(map[string]common.GitlabUser)
 var QyEmailMap = make(map[string]common.QyUserItem)
 
 /* get token and Cache to redis*/
-func GetQyToken() (string,error) {
+func GetQyToken() (string, error) {
 	corpid, err := GetRedisClient().Get("corpid").Result()
 	corpsecret, err := GetRedisClient().Get("corpsecret").Result()
 	val, err := GetRedisClient().Get("qytoken").Result()
 	/* save data into redis */
-	if err != nil  || len(val) ==0  {
+	if err != nil || len(val) == 0 {
 
 		request := gorequest.New()
 		resp, body, errs := request.Get(getQyTokenUrl + corpid + "&corpsecret=" + corpsecret).End()
-		if resp.StatusCode != 200 || len(errs) !=0 {
+		if resp.StatusCode != 200 || len(errs) != 0 {
 			newError := errors.New("getQyToken resp is not 200 or errs is not null")
 			return "", newError
 		}
@@ -53,7 +53,7 @@ func GetQyToken() (string,error) {
 			return "", newError
 		}
 
-		return qyToken.AccessToken,nil
+		return qyToken.AccessToken, nil
 	}
 
 	return val, nil
@@ -88,7 +88,7 @@ func GetGitlabUsers() {
 	}
 	request := gorequest.New()
 	gitlabUser := make([]common.GitlabUser, 10)
-	for page := 1; page < 7; page ++ {
+	for page := 1; page < 7; page++ {
 		resp, body, errs := request.Get(getGitlabUsersUrl + "?" + "private_token=" + private_token + "&" + "page=" + strconv.Itoa(page)).End()
 		if resp.StatusCode != 200 && errs != nil {
 			panic(errs)

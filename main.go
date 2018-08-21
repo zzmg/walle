@@ -1,18 +1,18 @@
 package main
 
 import (
-	"gitlab.wallstcn.com/wscnbackend/ivankaprotocol/user"
-	"gitlab.wallstcn.com/wscnbackend/ivankaprotocol/delegate"
-	"gitlab.wallstcn.com/wscnbackend/ivankaprotocol/xinge"
+	"context"
 	"cradle/walle/client"
 	"cradle/walle/common"
-	"strings"
 	"fmt"
-	"gitlab.wallstcn.com/wscnbackend/ivankastd/service"
-	"gitlab.wallstcn.com/wscnbackend/ivankastd"
 	"github.com/micro/go-micro"
+	"gitlab.wallstcn.com/wscnbackend/ivankaprotocol/delegate"
+	"gitlab.wallstcn.com/wscnbackend/ivankaprotocol/user"
+	"gitlab.wallstcn.com/wscnbackend/ivankaprotocol/xinge"
+	"gitlab.wallstcn.com/wscnbackend/ivankastd"
+	"gitlab.wallstcn.com/wscnbackend/ivankastd/service"
+	"strings"
 	"time"
-	"context"
 )
 
 var (
@@ -78,7 +78,6 @@ func main() {
 	//ShortUriClient = delegate.NewShortUriClient(std.DelegateSvcName, svc.Client())
 	Push := xinge.NewPushApiClient("gitlab.wallstcn.com.xinge", svc.Client())
 
-
 	emailList := []string{"sre@wallstreetcn.com"}
 	emailParams := xinge.EmailParms{}
 	for _, val := range leaveUserList {
@@ -91,7 +90,7 @@ func main() {
 	emailParams.Receivers = emailList
 	emailParams.Project = "delete me"
 
-	status,err := Push.SendEmail(context.Background(),&emailParams)
+	status, err := Push.SendEmail(context.Background(), &emailParams)
 	if err != nil {
 		fmt.Println("error in email-sending: ", err.Error())
 	}
@@ -102,4 +101,3 @@ func main() {
 	}
 
 }
-

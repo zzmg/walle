@@ -24,7 +24,7 @@ deps:
 	mkdir -p /tmp/govendor/src/gitlab.wallstcn.com/wscnbackend
 	@if [ "$(CI_COMMIT_REF_NAME)" = "master" ]; then\
 		echo "checkout ivankastd:master";\
-		git clone git@gitlab.wallstcn.com:wscnbackend/ivankastd.git /tmp/govendor/src/gitlab.wallstcn.com/wscnbackend/ivankastd;\
+		git clone -b sit git@gitlab.wallstcn.com:wscnbackend/ivankastd.git /tmp/govendor/src/gitlab.wallstcn.com/wscnbackend/ivankastd;\
 		git clone git@gitlab.wallstcn.com:wscnbackend/govendor.git /tmp/govendor_temp;\
                 git clone git@gitlab.wallstcn.com:wscnbackend/ivankaprotocol.git /tmp/govendor/src/gitlab.wallstcn.com/wscnbackend/ivankaprotocol;\
 	else\
