@@ -4,7 +4,7 @@ ADD cron /
 RUN cp /cron /etc/crontab
 RUN touch /var/log/cron.log
 ADD run.sh /
-ADD chmod +x /run.sh
+RUN chmod +x /run.sh
 ADD server /
 ADD conf/ /conf
 #ENTRYPOINT [ "/server" ]
