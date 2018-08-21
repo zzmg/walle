@@ -67,7 +67,7 @@ func main() {
 	}
 	StartClient()
 
-	emailList := []string{"sre@wallstreetcn.com"}
+	emailList := []string{"zhangmengge@wallstreetcn.com"}
 	emailParams := xinge.EmailParms{}
 	for _, val := range leaveUserList {
 		emailParams.Content = "Users who need to be deleted on gitlab: " + val
