@@ -1,15 +1,15 @@
 package client
 
 import (
-	"golang.org/x/crypto/ssh"
+	"bufio"
 	"bytes"
 	"fmt"
-	"os"
-	"bufio"
-	"io"
 	"github.com/labstack/gommon/log"
+	"golang.org/x/crypto/ssh"
+	"io"
 	"io/ioutil"
 	"net"
+	"os"
 	"time"
 )
 

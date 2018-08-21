@@ -8,11 +8,11 @@ import (
 	"github.com/micro/go-micro"
 	"time"
 	"gitlab.wallstcn.com/wscnbackend/ivankaprotocol/xinge"
+	"context"
 	"cradle/walle/client"
 	"cradle/walle/common"
-	"strings"
 	"fmt"
-	"context"
+	"strings"
 )
 
 var (
@@ -65,7 +65,6 @@ func main() {
 			leaverUserPublish = append(leaverUserPublish, val[1:])
 		}
 	}
-	//
 	StartClient()
 
 	emailList := []string{"sre@wallstreetcn.com"}
@@ -80,7 +79,7 @@ func main() {
 	emailParams.Receivers = emailList
 	emailParams.Project = "delete me"
 
-	status,err := Push.SendEmail(context.Background(),&emailParams)
+	status, err := Push.SendEmail(context.Background(), &emailParams)
 	if err != nil {
 		fmt.Println("error in email-sending: ", err.Error())
 	}
@@ -91,4 +90,3 @@ func main() {
 	}
 
 }
-

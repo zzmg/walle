@@ -1,17 +1,18 @@
 package client
 
 import (
+	"cradle/walle/common"
 	"github.com/go-redis/redis"
 	"github.com/jinzhu/configor"
-	"cradle/walle/common"
 )
+
 var Config common.Config
 
 func LoadConfig() {
 	configor.Load(&Config, "conf/walle.yaml")
 }
 
-func GetRedisClient() *redis.Client{
+func GetRedisClient() *redis.Client {
 	LoadConfig()
 	/* read redis cache */
 	client := redis.NewClient(&redis.Options{
