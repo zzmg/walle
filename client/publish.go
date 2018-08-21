@@ -4,27 +4,38 @@ import (
 	"golang.org/x/crypto/ssh"
 	"bytes"
 	"fmt"
-	"net"
 	"os"
 	"bufio"
 	"io"
+	"github.com/labstack/gommon/log"
+	"io/ioutil"
+	"net"
 	"time"
 )
 
-func FileSaveRedis(){
+func FileSaveRedis() {
+	//var hostKey ssh.PublicKey
+	key, err := ioutil.ReadFile("conf/id_rsa")
+	if err != nil {
+		log.Fatalf("unable to read private key: %v", err)
+	}
+	signer, err := ssh.ParsePrivateKey(key)
+	if err != nil {
+		log.Fatalf("unable to parse private key: %v", err)
+	}
 	config := &ssh.ClientConfig{
 		User: "ubuntu",
 		Auth: []ssh.AuthMethod{
-			ssh.Password("253Huaerjie!"),
+			ssh.PublicKeys(signer),
 		},
 		HostKeyCallback: func(hostname string, remote net.Addr, key ssh.PublicKey) error {
 			return nil
 		},
 	}
 
-	client, err := ssh.Dial("tcp", "123.206.184.237:22", config)
+	client, err := ssh.Dial("tcp", "123.207.187.22:22", config)
 	if err != nil {
-		panic("Failed to dial: " + err.Error())
+		log.Fatalf("unable to connect: %v", err)
 	}
 
 	session, err := client.NewSession()
@@ -49,26 +60,23 @@ func FileSaveRedis(){
 		fmt.Println(err)
 	}
 
-	//clientRedis := redis.NewClient(&redis.Options{
-	//	Addr:     "localhost:6379",
-	//	Password: "", // no password set
-	//	DB:       0,  // use default DB
-	//})
-
 	buf := bufio.NewReader(f)
 	var mailKey []string
 
 	for {
-		a, _, c := buf.ReadLine()
-		if c == io.EOF {
+		a, _, err := buf.ReadLine()
+		if err == io.EOF {
 			break
+		} else if err != nil {
+
 		}
 		mailKey = append(mailKey, string(a))
 	}
 	for i := 1; i < len(mailKey)+1; i++ {
 		if i&1 == 1 {
-			GetRedisClient().Set(mailKey[i-1], mailKey[i], 23*time.Hour)
+			GetRedisClient().SetNX(mailKey[i-1], mailKey[i], 7200*time.Second)
 		}
 	}
+	os.Remove("auth.txt")
 
 }

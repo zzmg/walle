@@ -8,4 +8,8 @@ micro:
 redis:
     addr: "10.0.2.239:6379"
     password: "crs-pv5btjqq:253Huaerjie!"
-    db: 0
+    db: 14
+#redis:
+#    addr: "localhost:6379"
+#    password: ""
+#    db: 0

@@ -2,9 +2,6 @@ package main
 
 import (
 	"cradle/walle/client"
-	"cradle/walle/common"
-	"strings"
-	"fmt"
 	"gitlab.wallstcn.com/wscnbackend/ivankaprotocol/user"
 	"gitlab.wallstcn.com/wscnbackend/ivankaprotocol/delegate"
 	"gitlab.wallstcn.com/wscnbackend/ivankastd/service"
@@ -12,7 +9,10 @@ import (
 	"time"
 	"gitlab.wallstcn.com/wscnbackend/ivankastd"
 	"gitlab.wallstcn.com/wscnbackend/ivankaprotocol/xinge"
-	"golang.org/x/net/context"
+	"cradle/walle/common"
+	"strings"
+	"fmt"
+	"context"
 )
 
 var (
@@ -25,7 +25,7 @@ var Push xinge.PushApiClient
 
 func StartClient() {
 	svc := service.NewService(
-		ivankastd.ConfigService{SvcName: "gitlab.wallstcn.com.walle", SvcAddr: ":10087", EtcdAddrs: []string{"10.1.0.2:2379", "10.1.0.210:2379", "10.1.0.222:2379"}},
+		ivankastd.ConfigService{SvcName: "gitlab.wallstcn.com.walle", SvcAddr: ":10087", EtcdAddrs: []string{"10.0.0.154:2379", "10.0.0.161:2379", "10.0.0.48:2379"}},
 		micro.RegisterTTL(time.Second*30),
 		micro.RegisterInterval(time.Second*10),
 	)
@@ -46,8 +46,7 @@ func main() {
 	//QyUsers and GitlabUsers
 	for key, val := range client.GitlabEmailMap {
 		if _, ok := client.QyEmailMap[key]; !ok && client.GitlabEmailMap[key].External == false && strings.Contains(key, "wallstreetcn.com") && client.GitlabEmailMap[key].State == "active" && !strings.Contains(client.GitlabEmailMap[key].Name, "junzhi") && client.GitlabEmailMap[key].Name != "wallstreetcn" {
-			fmt.Println("Users who need to be deleted on gitlab: " + val.Name + "  " + val.Email)
-			//println(val.Id)
+			fmt.Println("Users who need to be blocked on gitlab: " + val.Name + "  " + val.Email)
 			//println(client.BlockGitlabUsers(val.Id))
 			leaveUser[key] = val
 			leaveUserList = append(leaveUserList, key)
@@ -64,7 +63,7 @@ func main() {
 			leaverUserPublish = append(leaverUserPublish, val[1:])
 		}
 	}
-
+	//
 	StartClient()
 
 	emailList := []string{"sre@wallstreetcn.com"}
@@ -77,7 +76,7 @@ func main() {
 	}
 	emailParams.Titile = "Users who need to be deleted"
 	emailParams.Receivers = emailList
-	emailParams.Project = "walle"
+	emailParams.Project = "delete me"
 
 	Push.SendEmail(context.Background(),&emailParams)
 	//fmt.Println(emailParams.Content)

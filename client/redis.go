@@ -24,3 +24,14 @@ func GetRedisClient() *redis.Client{
 	})
 	return client
 }
+
+/* only once
+func SaveKeyINRedis()  {
+	GetRedisClient().Set("corpid","ww63adb0909f572435", 0)
+	GetRedisClient().Set("corpsecret","_k1tl1qmsntCBHVITGrKqbSopi7E18Q8joYjeD62_K0",0)
+	GetRedisClient().Set("private_token","1u-v5yZEuZsj18yhg7ai",0)
+}
+func main() {
+	SaveKeyINRedis()
+}
+*/

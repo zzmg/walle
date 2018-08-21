@@ -16,15 +16,15 @@ type Redis struct {
 }
 
 type QyToken struct {
-	ErrCode     int64  `json:"err_code"`
-	ErrMsg      string `json:"err_msg"`
+	ErrCode     int64  `json:"errcode"`
+	ErrMsg      string `json:"errmsg"`
 	AccessToken string `json:"access_token"`
 	ExpiresIn   int64  `json:"expires_in"`
 }
 
 type QyUser struct {
-	ErrCode  int64        `json:"err_code"`
-	ErrMsg   string       `json:"err_msg"`
+	ErrCode  int64        `json:"errcode"`
+	ErrMsg   string       `json:"errmsg"`
 	UserList []QyUserItem `json:"userlist"`
 }
 type QyUserItem struct {
