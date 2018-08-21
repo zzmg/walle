@@ -78,8 +78,12 @@ func main() {
 	emailParams.Receivers = emailList
 	emailParams.Project = "delete me"
 
-	Push.SendEmail(context.Background(),&emailParams)
-	//fmt.Println(emailParams.Content)
+	status,err := Push.SendEmail(context.Background(),&emailParams)
+	if err != nil {
+		fmt.Println("error in email-sending: ", err.Error())
+	}
+	fmt.Println("email-sending status: ", status.Status)
+
 	for {
 		time.Sleep(time.Second * 10)
 	}
