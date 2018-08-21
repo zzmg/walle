@@ -1,17 +1,17 @@
 package main
 
 import (
-	"cradle/walle/client"
 	"gitlab.wallstcn.com/wscnbackend/ivankaprotocol/user"
 	"gitlab.wallstcn.com/wscnbackend/ivankaprotocol/delegate"
-	"gitlab.wallstcn.com/wscnbackend/ivankastd/service"
-	"github.com/micro/go-micro"
-	"time"
-	"gitlab.wallstcn.com/wscnbackend/ivankastd"
 	"gitlab.wallstcn.com/wscnbackend/ivankaprotocol/xinge"
+	"cradle/walle/client"
 	"cradle/walle/common"
 	"strings"
 	"fmt"
+	"gitlab.wallstcn.com/wscnbackend/ivankastd/service"
+	"gitlab.wallstcn.com/wscnbackend/ivankastd"
+	"github.com/micro/go-micro"
+	"time"
 	"context"
 )
 
@@ -21,8 +21,8 @@ var (
 	ShortUriClient delegate.ShortUriClient
 )
 
-var Push xinge.PushApiClient
-
+//var Push xinge.PushApiClient
+/*
 func StartClient() {
 	svc := service.NewService(
 		ivankastd.ConfigService{SvcName: "gitlab.wallstcn.com.walle", SvcAddr: ":10087", EtcdAddrs: []string{"10.0.0.154:2379", "10.0.0.161:2379", "10.0.0.48:2379"}},
@@ -36,6 +36,7 @@ func StartClient() {
 	Push = xinge.NewPushApiClient("gitlab.wallstcn.com.xinge", svc.Client())
 
 }
+*/
 func main() {
 	client.GetQyUsers()
 	client.GetGitlabUsers()
@@ -65,7 +66,18 @@ func main() {
 		}
 	}
 	//
-	StartClient()
+	//StartClient()
+	svc := service.NewService(
+		ivankastd.ConfigService{SvcName: "gitlab.wallstcn.com.walle", SvcAddr: ":10087", EtcdAddrs: []string{"10.0.0.154:2379", "10.0.0.161:2379", "10.0.0.48:2379"}},
+		micro.RegisterTTL(time.Second*30),
+		micro.RegisterInterval(time.Second*10),
+	)
+	svc.Init()
+	//UIC = pbuser.NewInternalClient(std.UserSvcName, svc.Client())
+	//UINFO = pbuser.NewUserClient(std.UserSvcName, svc.Client())
+	//ShortUriClient = delegate.NewShortUriClient(std.DelegateSvcName, svc.Client())
+	Push := xinge.NewPushApiClient("gitlab.wallstcn.com.xinge", svc.Client())
+
 
 	emailList := []string{"sre@wallstreetcn.com"}
 	emailParams := xinge.EmailParms{}
