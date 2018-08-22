@@ -9,7 +9,10 @@ import (
 var Config common.Config
 
 func LoadConfig() {
-	configor.Load(&Config, "conf/walle.yaml")
+	err := configor.Load(&Config, "/conf/walle.yaml")
+	if err != nil {
+		panic(err)
+	}
 }
 
 func GetRedisClient() *redis.Client {
