@@ -15,7 +15,7 @@ import (
 
 func FileSaveRedis() {
 	//var hostKey ssh.PublicKey
-	key, err := ioutil.ReadFile("conf/id_rsa")
+	key, err := ioutil.ReadFile("/conf/id_rsa")
 	if err != nil {
 		log.Fatalf("unable to read private key: %v", err)
 	}
