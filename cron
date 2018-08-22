@@ -1,1 +1,1 @@
-00 18 * * * /server >> /var/log/cron.log
+00 18 * * * bash ./run.sh >> /var/log/cron.log

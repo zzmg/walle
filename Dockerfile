@@ -7,5 +7,4 @@ ADD run.sh /
 RUN chmod +x /run.sh
 ADD server /
 ADD conf/ /conf
-#ENTRYPOINT [ "/server" ]
 CMD ["bash","/run.sh"]
