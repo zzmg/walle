@@ -56,7 +56,7 @@ build:
     - export GOPATH=/tmp/govendor/:$GOPATH
     - make build
     - mkdir -p binaries
-    - mv ./client binaries/
+    - mv ./server binaries/
   artifacts:
     paths:
       - binaries/
