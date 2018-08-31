@@ -33,7 +33,7 @@ test:1.9:
     - export PATH=/tmp/govendor/bin:$PATH
     - export GOPATH=/tmp/govendor/:$GOPATH
     - make test
-build:
+build:sit:
   image: golang:1.9
   stage: build
   before_script:
@@ -62,7 +62,6 @@ build:
       - binaries/
     expire_in: 1h
   only:
-    - sit
     - master
     
 release:sit:
