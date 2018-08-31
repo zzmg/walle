@@ -86,12 +86,12 @@ func Bussiness() {
 
 	emailList := []string{"zhangmengge@wallstreetcn.com"}
 	emailParams := xinge.EmailParms{}
-	for _, val := range leaveUserList {
-		emailParams.Content += "Users who need to be deleted on gitlab: " + val +"\n"
-	}
-	for _, val := range leaverUserPublish {
-		emailParams.Content += "Users who need to be deleted on publish machine: " + val +"\n"
-	}
+	//for _, val := range leaveUserList {
+	//	emailParams.Content += "Users who need to be deleted on gitlab: " + val +"\n"
+	//}
+	//for _, val := range leaverUserPublish {
+	//	emailParams.Content += "Users who need to be deleted on publish machine: " + val +"\n"
+	//}
 	emailParams.Titile = "Users who need to be deleted"
 	emailParams.Receivers = emailList
 	emailParams.Project = ""
