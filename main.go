@@ -8,11 +8,11 @@ import (
 	"github.com/micro/go-micro"
 	"time"
 	"gitlab.wallstcn.com/wscnbackend/ivankaprotocol/xinge"
-	"context"
-	"cradle/walle/client"
 	"cradle/walle/common"
 	"fmt"
 	"strings"
+	"math/rand"
+	"cradle/walle/client"
 )
 
 var (
@@ -65,28 +65,48 @@ func main() {
 			leaverUserPublish = append(leaverUserPublish, val[1:])
 		}
 	}
-	StartClient()
+
+	//SSL info
+	/*init var*/
+	var publicVar client.PublicVar
+	var sslVar client.SslVar
+	publicVar.Action = "CertGetList"
+	publicVar.SecretId = client.SecretId
+	publicVar.SignatureMethod = "HmacSHA256"
+	publicVar.Nonce = fmt.Sprintf("%d", func() int {
+		rand.Seed(time.Now().Unix())
+		randNum := rand.Intn(10000000)
+		return randNum
+	}())
+	publicVar.Timestamp = fmt.Sprintf("%d", time.Now().Unix())
+	publicVar.Region = "ab-shanghai"
+	sslVar.Page = "1"
+	sslInfo,_ := client.GetSslInfo(publicVar, sslVar)
+
+	//grpc server
+	//StartClient()
 
 	emailList := []string{"zhangmengge@wallstreetcn.com"}
 	emailParams := xinge.EmailParms{}
 	for _, val := range leaveUserList {
-		emailParams.Content = "Users who need to be deleted on gitlab: " + val
+		emailParams.Content += "Users who need to be deleted on gitlab: " + val +"\n"
 	}
 	for _, val := range leaverUserPublish {
-		emailParams.Content = "Users who need to be deleted on publish machine: " + val
+		emailParams.Content += "Users who need to be deleted on publish machine: " + val +"\n"
 	}
 	emailParams.Titile = "Users who need to be deleted"
 	emailParams.Receivers = emailList
-	emailParams.Project = "delete me"
+	emailParams.Project = ""
+	emailParams.Content += sslInfo
+	fmt.Printf(emailParams.Content)
+	//status, err := Push.SendEmail(context.Background(), &emailParams)
+	//if err != nil {
+	//	fmt.Println("error in email-sending: ", err.Error())
+	//}
+	//fmt.Println("email-sending status: ", status.Status)
 
-	status, err := Push.SendEmail(context.Background(), &emailParams)
-	if err != nil {
-		fmt.Println("error in email-sending: ", err.Error())
-	}
-	fmt.Println("email-sending status: ", status.Status)
-
-	for {
-		time.Sleep(time.Second * 10)
-	}
+	//for {
+	//	time.Sleep(time.Second * 10)
+	//}
 
 }

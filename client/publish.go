@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"bytes"
 	"fmt"
-	"github.com/labstack/gommon/log"
 	"golang.org/x/crypto/ssh"
 	"io"
 	"io/ioutil"
@@ -15,13 +14,13 @@ import (
 
 func FileSaveRedis() {
 	//var hostKey ssh.PublicKey
-	key, err := ioutil.ReadFile("/conf/id_rsa")
+	key, err := ioutil.ReadFile("./conf/id_rsa")
 	if err != nil {
-		log.Fatalf("unable to read private key: %v", err)
+		fmt.Printf("unable to read private key: %v", err)
 	}
 	signer, err := ssh.ParsePrivateKey(key)
 	if err != nil {
-		log.Fatalf("unable to parse private key: %v", err)
+		fmt.Printf("unable to parse private key: %v", err)
 	}
 	config := &ssh.ClientConfig{
 		User: "ubuntu",
@@ -35,7 +34,7 @@ func FileSaveRedis() {
 
 	client, err := ssh.Dial("tcp", "123.207.187.22:22", config)
 	if err != nil {
-		log.Fatalf("unable to connect: %v", err)
+		fmt.Printf("unable to connect: %v", err)
 	}
 
 	session, err := client.NewSession()
@@ -57,7 +56,7 @@ func FileSaveRedis() {
 	f, err := os.Open("auth.txt")
 	defer file.Close()
 	if err != nil {
-		fmt.Println(err)
+		panic(err)
 	}
 
 	buf := bufio.NewReader(f)

@@ -4,14 +4,23 @@ import (
 	"cradle/walle/common"
 	"github.com/go-redis/redis"
 	"github.com/jinzhu/configor"
+	"os"
 )
 
 var Config common.Config
 
 func LoadConfig() {
-	err := configor.Load(&Config, "/conf/walle.yaml")
-	if err != nil {
-		panic(err)
+	env := os.Getenv("CONFIG_ENV")
+	if env == "prod"{
+		err := configor.Load(&Config, "/conf/walle.yaml")
+		if err != nil {
+			panic(err)
+		}
+	}else  {
+		err := configor.Load(&Config, "conf/walle_test.yaml")
+		if err != nil {
+			panic(err)
+		}
 	}
 }
 
@@ -31,9 +40,9 @@ func GetRedisClient() *redis.Client {
 
 /* only once
 func SaveKeyINRedis()  {
-	GetRedisClient().Set("corpid","ww63adb0909f572435", 0)
-	GetRedisClient().Set("corpsecret","_k1tl1qmsntCBHVITGrKqbSopi7E18Q8joYjeD62_K0",0)
-	GetRedisClient().Set("private_token","1u-v5yZEuZsj18yhg7ai",0)
+	GetRedisClient().Set("corpid","*", 0)
+	GetRedisClient().Set("corpsecret","*",0)
+	GetRedisClient().Set("private_token","*",0)
 }
 func main() {
 	SaveKeyINRedis()
