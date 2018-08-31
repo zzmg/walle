@@ -39,6 +39,7 @@ func StartClient() {
 }
 
 func main() {
+	client.LoadConfig()
 	client.GetQyUsers()
 	client.GetGitlabUsers()
 	client.FileSaveRedis()
