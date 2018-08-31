@@ -95,7 +95,7 @@ func Bussiness() {
 	emailParams.Titile = "Users who need to be deleted"
 	emailParams.Receivers = emailList
 	emailParams.Project = ""
-	emailParams.Content = sslInfo + emailParams.Content
+	emailParams.Content = "this is test"
 	fmt.Printf(emailParams.Content)
 
 	status, err := Push.SendEmail(context.Background(), &emailParams)
