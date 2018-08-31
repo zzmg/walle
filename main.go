@@ -13,6 +13,7 @@ import (
 	"strings"
 	"math/rand"
 	"cradle/walle/client"
+	"context"
 )
 
 var (
@@ -84,7 +85,7 @@ func main() {
 	sslInfo,_ := client.GetSslInfo(publicVar, sslVar)
 
 	//grpc server
-	//StartClient()
+	StartClient()
 
 	emailList := []string{"zhangmengge@wallstreetcn.com"}
 	emailParams := xinge.EmailParms{}
@@ -99,14 +100,14 @@ func main() {
 	emailParams.Project = ""
 	emailParams.Content += sslInfo
 	fmt.Printf(emailParams.Content)
-	//status, err := Push.SendEmail(context.Background(), &emailParams)
-	//if err != nil {
-	//	fmt.Println("error in email-sending: ", err.Error())
-	//}
-	//fmt.Println("email-sending status: ", status.Status)
+	status, err := Push.SendEmail(context.Background(), &emailParams)
+	if err != nil {
+		fmt.Println("error in email-sending: ", err.Error())
+	}
+	fmt.Println("email-sending status: ", status.Status)
 
-	//for {
-	//	time.Sleep(time.Second * 10)
-	//}
+	for {
+		time.Sleep(time.Second * 10)
+	}
 
 }
