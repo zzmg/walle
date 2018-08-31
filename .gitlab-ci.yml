@@ -70,7 +70,7 @@ release:sit:
   script:
     - pwd
     - ls binaries
-    - cp binaries/client .
+    - cp binaries/server .
     - REVISION=`git rev-parse --short HEAD || echo unknown`
     - docker login --username=3518936217 ccr.ccs.tencentyun.com -p "$CI_DOCKER_REGISTRY_TOKEN"
     - docker build --tag="$IMAGE_NAME:$REVISION" .
