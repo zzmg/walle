@@ -79,7 +79,7 @@ func Bussiness() {
 	publicVar.Timestamp = fmt.Sprintf("%d", time.Now().Unix())
 	publicVar.Region = "ab-shanghai"
 	sslVar.Page = "1"
-	sslInfo,_ := client.GetSslInfo(publicVar, sslVar)
+	//sslInfo,_ := client.GetSslInfo(publicVar, sslVar)
 
 	//grpc server
 
