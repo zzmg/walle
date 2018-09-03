@@ -94,10 +94,10 @@ func Bussiness() {
 	//}
 	emailParams.Titile = "Users who need to be deleted"
 	emailParams.Receivers = emailList
-	emailParams.Project = "zmg"
-	emailParams.Content = "this is test"
+	emailParams.Content="this is test"
+	emailParams.Project="zmg"
 	fmt.Printf(emailParams.Content)
-
+	fmt.Println(emailParams.Project)
 	status, err := Push.SendEmail(context.Background(), &emailParams)
 	if err != nil {
 		fmt.Println("error in email-sending: ", err.Error())
