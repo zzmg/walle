@@ -95,7 +95,7 @@ func Bussiness() {
 	//}
 	emailParams.Titile = "Users who need to be deleted"
 	emailParams.Receivers = emailList
-	emailParams.Content="this is test"
+	emailParams.Content="this is test" + string(time.Now().Unix())
 	emailParams.Project="zmg"
 	fmt.Println(emailParams.Content)
 	fmt.Println(emailParams.Project)
