@@ -5,12 +5,12 @@ import (
 	"math/rand"
 	"time"
 	"cradle/walle/client"
-	"gitlab.wallstcn.com/wscnbackend/ivankaprotocol/xinge"
 	"cradle/walle/common"
 	"strings"
 	"gitlab.wallstcn.com/wscnbackend/ivankastd/service"
 	"gitlab.wallstcn.com/wscnbackend/ivankastd"
 	"github.com/micro/go-micro"
+	"gitlab.wallstcn.com/wscnbackend/ivankaprotocol/xinge"
 	"context"
 )
 
@@ -20,6 +20,7 @@ import (
 //	ShortUriClient delegate.ShortUriClient
 //)
 
+//
 var Push xinge.PushApiClient
 
 func StartClient() {
@@ -96,7 +97,7 @@ func Bussiness() {
 	emailParams.Receivers = emailList
 	emailParams.Content="this is test"
 	emailParams.Project="zmg"
-	fmt.Printf(emailParams.Content)
+	fmt.Println(emailParams.Content)
 	fmt.Println(emailParams.Project)
 	status, err := Push.SendEmail(context.Background(), &emailParams)
 	if err != nil {
