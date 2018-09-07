@@ -21,7 +21,7 @@ func Test()  {
 	var pus xinge.PushApiClient
 	pus=xinge.NewPushApiClient("gitlab.wallstcn.com.xinge",svc.Client())
 	req:=new(xinge.EmailParms)
-	req.Project="project"
+	//req.Project="project"
 	req.Receivers=[]string{"wangxia@wallstreetcn.com","zhangmengge@wallstreetcn.com"}
 	req.Titile="titile"
 	req.Content="content"
