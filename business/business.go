@@ -2,11 +2,7 @@ package business
 
 import (
 	"fmt"
-	"math/rand"
 	"time"
-	"cradle/walle/client"
-	"cradle/walle/common"
-	"strings"
 	"gitlab.wallstcn.com/wscnbackend/ivankastd/service"
 	"gitlab.wallstcn.com/wscnbackend/ivankastd"
 	"github.com/micro/go-micro"
@@ -35,7 +31,9 @@ func StartClient() {
 
 }
 func Bussiness() {
+
 	StartClient()
+/*
 	client.GetQyUsers()
 	client.GetGitlabUsers()
 	client.FileSaveRedis()
@@ -64,10 +62,10 @@ func Bussiness() {
 			leaverUserPublish = append(leaverUserPublish, val[1:])
 		}
 	}
-
+*/
 	//SSL info
 	/*init var*/
-	var publicVar client.PublicVar
+/*	var publicVar client.PublicVar
 	var sslVar client.SslVar
 	publicVar.Action = "CertGetList"
 	publicVar.SecretId = client.SecretId
@@ -80,23 +78,25 @@ func Bussiness() {
 	publicVar.Timestamp = fmt.Sprintf("%d", time.Now().Unix())
 	publicVar.Region = "ab-shanghai"
 	sslVar.Page = "1"
-	//sslInfo,_ := client.GetSslInfo(publicVar, sslVar)
+	sslInfo,_ := client.GetSslInfo(publicVar, sslVar)
 
 	//grpc server
 
 
-	emailList := []string{"zhangmengge@wallstreetcn.com"}
+	for _, val := range leaveUserList {
+		emailParams.Content += "Users who need to be deleted on gitlab: " + val +"\n"
+	}
+	for _, val := range leaverUserPublish {
+		emailParams.Content += "Users who need to be deleted on publish machine: " + val +"\n"
+	}
+*/
 	emailParams := xinge.EmailParms{}
-	//for _, val := range leaveUserList {
-	//	emailParams.Content += "Users who need to be deleted on gitlab: " + val +"\n"
-	//}
-	//for _, val := range leaverUserPublish {
-	//	emailParams.Content += "Users who need to be deleted on publish machine: " + val +"\n"
-	//}
+	emailList := []string{"zhangmengge@wallstreetcn.com"}
 	emailParams.Titile = "Users who need to be deleted"
 	emailParams.Receivers = emailList
-	emailParams.Content="this is test" + string(time.Now().Unix())
-	emailParams.Project="zmg"
+	//emailParams.Content= emailParams.Content + sslInfo
+	emailParams.Content = "Content"
+	emailParams.Project="project"
 	fmt.Println(emailParams.Content)
 	fmt.Println(emailParams.Project)
 	status, err := Push.SendEmail(context.Background(), &emailParams)
