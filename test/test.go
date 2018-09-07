@@ -21,10 +21,10 @@ func Test()  {
 	var pus xinge.PushApiClient
 	pus=xinge.NewPushApiClient("gitlab.wallstcn.com.xinge",svc.Client())
 	req:=new(xinge.EmailParms)
-	req.Project="test"
+	req.Project="project"
 	req.Receivers=[]string{"wangxia@wallstreetcn.com","zhangmengge@wallstreetcn.com"}
-	req.Titile="test"
-	req.Content="t"
+	req.Titile="titile"
+	req.Content="content"
 	ctx, _ := context.WithTimeout(context.Background(), (10 * time.Second))
 	rsp,_:=pus.SendEmail(ctx,req)
 	fmt.Println(rsp.Status)
