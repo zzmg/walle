@@ -1,13 +1,13 @@
 package business
 
 import (
-	"fmt"
+	//"fmt"
 	"time"
 	"gitlab.wallstcn.com/wscnbackend/ivankastd/service"
 	"gitlab.wallstcn.com/wscnbackend/ivankastd"
 	"github.com/micro/go-micro"
 	"gitlab.wallstcn.com/wscnbackend/ivankaprotocol/xinge"
-	"context"
+	//"context"
 )
 
 //var (
@@ -33,7 +33,7 @@ func StartClient() {
 func Bussiness() {
 
 	StartClient()
-/*
+	/*
 	client.GetQyUsers()
 	client.GetGitlabUsers()
 	client.FileSaveRedis()
@@ -65,7 +65,7 @@ func Bussiness() {
 */
 	//SSL info
 	/*init var*/
-/*	var publicVar client.PublicVar
+	/*	var publicVar client.PublicVar
 	var sslVar client.SslVar
 	publicVar.Action = "CertGetList"
 	publicVar.SecretId = client.SecretId
@@ -89,7 +89,7 @@ func Bussiness() {
 	for _, val := range leaverUserPublish {
 		emailParams.Content += "Users who need to be deleted on publish machine: " + val +"\n"
 	}
-*/
+
 	emailParams := xinge.EmailParms{}
 	emailList := []string{"zhangmengge@wallstreetcn.com"}
 	emailParams.Titile = "Users who need to be deleted"
@@ -104,5 +104,5 @@ func Bussiness() {
 		fmt.Println("error in email-sending: ", err.Error())
 	}
 	fmt.Println("email-sending status: ", status.Status)
-
+*/
 }
