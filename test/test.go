@@ -12,7 +12,7 @@ import (
 
 func Test()  {
 	svc := service.NewService(
-		ivankastd.ConfigService{SvcName: "gitlab.wallstcn.com.walle", SvcAddr: ":10087", EtcdAddrs: []string{"10.0.0.154:2379", "10.0.0.161:2379", "10.0.0.48:2379"}},
+		ivankastd.ConfigService{SvcName: "gitlab.wallstcn.com.xinge", SvcAddr: ":10087", EtcdAddrs: []string{"10.0.0.154:2379", "10.0.0.161:2379", "10.0.0.48:2379"}},
 		micro.RegisterTTL(time.Second*30),
 		micro.RegisterInterval(time.Second*10),
 	)
