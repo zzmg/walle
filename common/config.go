@@ -1,7 +1,6 @@
 package common
 
 import (
-	"gitlab.wallstcn.com/operation/xinge/models"
 	std "gitlab.wallstcn.com/wscnbackend/ivankastd"
 )
 
@@ -45,6 +44,6 @@ func LoadConfig(filePath string) {
 
 func Initalise() {
 	std.InitLog(GlobalConf.Log)
-	models.InitModel(GlobalConf.Mysql)
+	//models.InitModel(GlobalConf.Mysql)
 }
 
