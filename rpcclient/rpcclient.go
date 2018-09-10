@@ -72,12 +72,16 @@ func ClientSendEmail() {
 	sslInfo,_ := client.GetSslInfo(publicVar, sslVar)
 
 	//user info
-	content := "test"
+	//test
+	fmt.Println(len(leaveUserList))
+	fmt.Println(len(leaverUserPublish))
+
+	var content string
 	for _, val := range leaveUserList {
-		content += "Users who need to be deleted on gitlab: " + val +"\n"
+		content = content + "Users who need to be deleted on gitlab: " + val +"\n"
 	}
 	for _, val := range leaverUserPublish {
-		content += "Users who need to be deleted on publish machine: " + val +"\n"
+		content = content +"Users who need to be deleted on publish machine: " + val +"\n"
 	}
 	fmt.Println(content)
 
