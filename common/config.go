@@ -4,7 +4,6 @@ import (
 	std "gitlab.wallstcn.com/wscnbackend/ivankastd"
 )
 
-
 var (
 	GlobalConf *Config
 )
@@ -16,7 +15,7 @@ type Config struct {
 	EtcdAddrs EtcdAddrsDetail   `yaml:"etcd_addrs"`
 	Qcloud    QcloudDetail      `yaml:"qcloud"`
 	Gitlab    GitlabDetail      `yaml:"gitlab"`
-	Redis Redis `yaml:"redis"`
+	Redis     Redis             `yaml:"redis"`
 }
 
 type GitlabDetail struct {
@@ -46,4 +45,3 @@ func Initalise() {
 	std.InitLog(GlobalConf.Log)
 	//models.InitModel(GlobalConf.Mysql)
 }
-
