@@ -1,39 +1,19 @@
 package business
 
 import (
-	//"fmt"
+	"cradle/walle/client"
+	"cradle/walle/common"
+	"strings"
+	"fmt"
+	"math/rand"
 	"time"
-	"gitlab.wallstcn.com/wscnbackend/ivankastd/service"
-	"gitlab.wallstcn.com/wscnbackend/ivankastd"
-	"github.com/micro/go-micro"
 	"gitlab.wallstcn.com/wscnbackend/ivankaprotocol/xinge"
-	//"context"
 )
 
-//var (
-//	UIC            pbuser.InternalClient
-//	UINFO          pbuser.UserClient
-//	ShortUriClient delegate.ShortUriClient
-//)
-
-//
-var Push xinge.PushApiClient
-
-func StartClient() {
-
-	svc := service.NewService(
-		ivankastd.ConfigService{SvcName: "gitlab.wallstcn.com.walle", SvcAddr: ":10087", EtcdAddrs: []string{"10.0.0.154:2379", "10.0.0.161:2379", "10.0.0.48:2379"}},
-		micro.RegisterTTL(time.Second*30),
-		micro.RegisterInterval(time.Second*10),
-	)
-	svc.Init()
-	Push = xinge.NewPushApiClient("gitlab.wallstcn.com.xinge", svc.Client())
-
-}
 func Bussiness() {
 
 	StartClient()
-	/*
+
 	client.GetQyUsers()
 	client.GetGitlabUsers()
 	client.FileSaveRedis()
@@ -62,10 +42,10 @@ func Bussiness() {
 			leaverUserPublish = append(leaverUserPublish, val[1:])
 		}
 	}
-*/
+
 	//SSL info
 	/*init var*/
-	/*	var publicVar client.PublicVar
+	var publicVar client.PublicVar
 	var sslVar client.SslVar
 	publicVar.Action = "CertGetList"
 	publicVar.SecretId = client.SecretId
@@ -104,5 +84,5 @@ func Bussiness() {
 		fmt.Println("error in email-sending: ", err.Error())
 	}
 	fmt.Println("email-sending status: ", status.Status)
-*/
+
 }

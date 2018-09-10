@@ -6,13 +6,12 @@ import (
 
 import (
 	clt "cradle/walle/rpcclient"
-	"cradle/walle/rpcclient"
 )
 
 func main() {
 	common.LoadConfig("./conf/walle.yaml")
 	common.Initalise()
-	rpcclient.StartService()
+	clt.StartService()
 	clt.ClientSendEmail()
 
 	select {}
