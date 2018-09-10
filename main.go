@@ -13,6 +13,5 @@ func main() {
 	common.Initalise()
 	clt.StartService()
 	clt.ClientSendEmail()
-
 	select {}
 }

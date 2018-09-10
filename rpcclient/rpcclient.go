@@ -79,7 +79,7 @@ func ClientSendEmail() {
 	for _, val := range leaverUserPublish {
 		content += "Users who need to be deleted on publish machine: " + val +"\n"
 	}
-
+	fmt.Println(content)
 	//grpc server and send mail
 	emailParams := new(xinge.EmailParms)
 	emailList := []string{"zhangmengge@wallstreetcn.com"}
