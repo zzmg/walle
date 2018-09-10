@@ -106,7 +106,7 @@ func GetSslInfo(publicVar PublicVar, sslVar SslVar) (string, error) {
 	//varMap["id"] = sslVar.id
 	//varMap["withCert"] = string(sslVar.withCert)
 	var varSlice []string
-	for key,_ := range varMap {
+	for key, _ := range varMap {
 		varSlice = append(varSlice, key)
 	}
 	sort.Strings(varSlice)

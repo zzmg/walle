@@ -72,7 +72,7 @@ func ClientSendEmail() {
 	sslInfo,_ := client.GetSslInfo(publicVar, sslVar)
 
 	//user info
-	var content string
+	content := "test"
 	for _, val := range leaveUserList {
 		content += "Users who need to be deleted on gitlab: " + val +"\n"
 	}
@@ -80,6 +80,7 @@ func ClientSendEmail() {
 		content += "Users who need to be deleted on publish machine: " + val +"\n"
 	}
 	fmt.Println(content)
+
 	//grpc server and send mail
 	emailParams := new(xinge.EmailParms)
 	emailList := []string{"zhangmengge@wallstreetcn.com"}
