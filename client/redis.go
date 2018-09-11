@@ -17,7 +17,7 @@ func LoadConfig() {
 			panic(err)
 		}
 	}else  {
-		err := configor.Load(&Config, "conf/walle_test.yaml")
+		err := configor.Load(&Config, "/conf/walle_test.yaml")
 		if err != nil {
 			panic(err)
 		}
