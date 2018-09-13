@@ -88,6 +88,8 @@ func ClientSendEmail() {
 	emailParams.Content= content + sslInfo
 	fmt.Println(emailParams.Content)
 	ctx, _ := context.WithTimeout(context.Background(), (10 * time.Second))
-	rsp, _ := push.SendEmail(ctx, emailParams)
-	fmt.Println("email-sending status: ", rsp.Status)
+	rsp, err := push.SendEmail(ctx, emailParams)
+	fmt.Println("email-sending status: ", err)
+	fmt.Println("email-sending status: ", rsp)
+
 }
