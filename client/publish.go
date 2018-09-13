@@ -74,7 +74,7 @@ func FileSaveRedis() {
 		}
 		mailKey = append(mailKey, string(a))
 	}
-	for i := 0; i < len(mailKey); i++ {
+	for i := 0; i < len(mailKey)-1; i++ {
 			GetRedisClient().SetNX(mailKey[i], mailKey[i+1], 7200*time.Second)
 	}
 	os.Remove("auth.txt")
