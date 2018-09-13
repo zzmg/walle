@@ -30,7 +30,7 @@ deps:
 	else\
 		echo "checkout ivankastd:sit";\
 		git clone -b sit git@gitlab.wallstcn.com:wscnbackend/ivankastd.git /tmp/govendor/src/gitlab.wallstcn.com/wscnbackend/ivankastd;\
-		git clone -b sit git@gitlab.wallstcn.com:wscnbackend/govendor.git /tmp/govendor_temp;\
+		git clone  git@gitlab.wallstcn.com:wscnbackend/govendor.git /tmp/govendor_temp;\
 	    git clone -b sit git@gitlab.wallstcn.com:wscnbackend/ivankaprotocol.git /tmp/govendor/src/gitlab.wallstcn.com/wscnbackend/ivankaprotocol;\
         fi
 	cp -r /tmp/govendor_temp/vendor/* /tmp/govendor/src
