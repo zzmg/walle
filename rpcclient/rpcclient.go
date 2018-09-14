@@ -94,7 +94,9 @@ func ClientSendEmail() {
 	fmt.Println("=========================")
 	ctx, _ := context.WithTimeout(context.Background(), (10 * time.Second))
 	rsp, err := push.SendEmail(ctx, emailParams)
-	fmt.Println("email-sending status: ", err)
-	fmt.Println("email-sending status: ", rsp)
+	if err != nil {
+		fmt.Println("email-sending err: ", err.Error())
+	}
+	fmt.Println(rsp.Status)
 
 }
