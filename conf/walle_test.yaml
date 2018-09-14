@@ -2,9 +2,7 @@ micro:
     svc_name: "gitlab.wallstcn.com.walle"
     svc_addr: ":10087"
     etcd_addrs:
-            - "10.1.0.2:2379"
-            - "10.1.0.210:2379"
-            - "10.1.0.222:2379"
+            - localhost:2379
 #redis:
 #    addr: "10.0.2.239:6379"
 #    password: "crs-pv5btjqq:253Huaerjie!"
