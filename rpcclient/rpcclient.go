@@ -86,7 +86,7 @@ func ClientSendEmail() {
 	emailParams.Titile = "Users who need to be deleted"
 	emailParams.Receivers = emailList
 	emailParams.Content= content + sslInfo
-	fmt.Println(emailParams.Content)
+	//fmt.Println(emailParams.Content)
 	fmt.Println("=======================")
 	fmt.Println(emailParams.Content)
 	fmt.Println(emailParams.Receivers)

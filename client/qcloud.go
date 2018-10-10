@@ -127,7 +127,7 @@ func GetSslInfo(publicVar PublicVar, sslVar SslVar) (string, error) {
 
 	//get request
 	requestUrl := "https://" + API + "&" + str + "Signature=" + signStr
-	fmt.Println(requestUrl)
+	//fmt.Println(requestUrl)
 	request := gorequest.New()
 	var sslInfo SslInfo
 	resp, body, errs := request.Get(requestUrl).End()
@@ -136,10 +136,10 @@ func GetSslInfo(publicVar PublicVar, sslVar SslVar) (string, error) {
 		return "", newError
 	}
 	sslInfo.Data.List = make([]SslInfoList, 10)
-	fmt.Println("-------------------")
+	//fmt.Println("-------------------")
 	json.Unmarshal([]byte(body), &sslInfo)
-	fmt.Println(sslInfo.Code)
-	fmt.Println(sslInfo.CodeDesc)
+	//fmt.Println(sslInfo.Code)
+	//fmt.Println(sslInfo.CodeDesc)
 
 	//return sslEndTime
 	var sslEndTime string
