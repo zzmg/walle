@@ -3,6 +3,7 @@ package main
 import (
 	"cradle/walle/common"
 	clt "cradle/walle/rpcclient"
+	"cradle/walle/models"
 )
 
 func main() {
@@ -10,5 +11,14 @@ func main() {
 	common.Initalise()
 	clt.StartService()
 	clt.ClientSendEmail()
+	service
+	defer  models.CloseDB()
 	select {}
+}
+
+func startService() {
+	svc := ivksvc.NewService(common.GlobalConf.Micro)
+	svc.Init()
+	rpcserver.Init(svc)
+
 }

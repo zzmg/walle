@@ -1,8 +1,6 @@
 package models
 
 import (
-	"time"
-
 	"github.com/jinzhu/gorm"
 
 	"gitlab.wallstcn.com/wscnbackend/ivankastd"
@@ -16,7 +14,7 @@ var (
 func InitModel(config ivankastd.ConfigMysql) {
 	db = toolkit.CreateDB(config)
 	db.AutoMigrate(
-		&OperationLogs{},
+		&InServiceUser{},
 	)
 }
 
@@ -30,15 +28,13 @@ func DB() *gorm.DB {
 	return db
 }
 
-type OperationLogs struct {
-	Id             int64 `grom:"primary_key"`
-	MessageType    string
-	Project        string
-	Receiver       string
-	SmsProject     string
-	EmailTitle     string
-	MessageContent string
-	Status         string
-	ErrorMsg       string
-	CreatedAt      time.Time `gorm:"column:created_at;type:TIMESTAMP(6);default:CURRENT_TIMESTAMP(6);index"`
+type InServiceUser struct {
+	Id        int64  `gorm:"primary_key"`
+	UserId    string `json:"user_id"`
+	Name      string `json:"name"`
+	Position  string `json:"position"`
+	Mobile    string `json:"mobile"`
+	Email     string `json:"email"`
+	Gender    string `json:"gender"`
+	CreatedAt string `json:"created_at"`
 }

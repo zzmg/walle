@@ -1,14 +1,5 @@
 package common
 
-//type Config struct {
-//
-//	//Micro Micro `yaml:"micro"`
-//}
-
-//type Micro struct {
-//	SvcName string `yaml:"svc_name""`
-//	SvcAddr string `yaml:"svc_addr""`
-//}
 type Redis struct {
 	Addr     string `yaml:"addr"`
 	Password string `yaml:"password"`
