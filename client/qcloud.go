@@ -86,9 +86,9 @@ type SslInfoList struct {
 //}
 
 const (
-	SecretId  string = "AKID34SsTvKQQFuOLHpnKgs5GNakv2FTBaUZ"
+	SecretId  string = "**"
 	API       string = "wss.api.qcloud.com/v2/index.php?"
-	SecretKey string = "Rn17NZdZYmwyqqoeYPAC8vXyFLG9ypv9"
+	SecretKey string = "**"
 )
 
 func GetSslInfo(publicVar PublicVar, sslVar SslVar) (string, error) {
