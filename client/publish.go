@@ -32,7 +32,7 @@ func FileSaveRedis() {
 		},
 	}
 
-	client, err := ssh.Dial("tcp", "123.207.187.22:22", config)
+	client, err := ssh.Dial("tcp", "127.0.0.1:22", config)
 	if err != nil {
 		fmt.Printf("unable to connect: %v", err)
 	}
